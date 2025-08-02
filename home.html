@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🔥 TaskSpark – Smart Productivity App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f9fbff;
+      color: #1f2937;
+    }
+
+    header {
+      padding: 28px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #2563eb;
+    }
+
+    nav a {
+      margin-left: 32px;
+      text-decoration: none;
+      color: #374151;
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #2563eb;
+      transition: 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      padding: 100px 60px;
+      background: linear-gradient(to bottom right, #e3f0ff, #ffffff);
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      color: #111827;
+      font-weight: 700;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .hero-text p {
+      font-size: 1.15rem;
+      color: #4b5563;
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+
+    .cta-button {
+      background: linear-gradient(to right, #3b82f6, #2563eb);
+      border: none;
+      padding: 16px 36px;
+      color: white;
+      font-weight: 600;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.05);
+    }
+
+    .hero img {
+      width: 100%;
+      max-width: 550px;
+    }
+
+    .features {
+      display: flex;
+      justify-content: space-around;
+      background: #ffffff;
+      padding: 80px 60px;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .feature-box {
+      max-width: 250px;
+      text-align: center;
+    }
+
+    .feature-box img {
+      height: 60px;
+      margin-bottom: 20px;
+    }
+
+    .feature-box h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: #111827;
+    }
+
+    .feature-box p {
+      color: #6b7280;
+      font-size: 1rem;
+    }
+
+    .calendar-section {
+      background: #f0f4f8;
+      padding: 80px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .calendar-section h2 {
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+      color: #1f2937;
+    }
+
+    iframe.calendar {
+      border: 0;
+      width: 100%;
+      max-width: 900px;
+      height: 600px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .section-showcase {
+      display: flex;
+      gap: 60px;
+      align-items: center;
+      padding: 80px 60px;
+      background: #ffffff;
+      color: #1f2937;
+    }
+
+    .section-showcase img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 16px;
+     
+    }
+
+    .section-showcase .text {
+      max-width: 600px;
+    }
+
+    .section-showcase .text h2 {
+      font-size: 2.2rem;
+      color: #111827;
+      margin-bottom: 20px;
+    }
+
+    .section-showcase .text p {
+      color: #4b5563;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+ 
+    footer {
+      background-color: #f3f4f6;
+      padding: 50px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">🔥 TaskSpark</div>
+   
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Revolutionize Your Day with Smart Productivity</h1>
+      <p>TaskSpark helps you organize, prioritize, and conquer your day with smart to-do lists, AI insights, and motivational nudges.</p>
+      <button class="cta-button" onclick="window.location.href='login.html'">🚀 Start Now</button>
+    </div>
+    <img src="img/homep.png" alt="Smart task manager illustration">
+  </section>
+
+  <section class="features">
+    <div class="feature-box">
+      <img src="https://img.icons8.com/fluency/48/todo-list.png" alt="Tasks">
+      <h3>Track Everything</h3>
+      <p>Create unlimited tasks with due dates, priorities, and reminders to stay ahead.</p>
+    </div>
+    <div class="feature-box">
+      <img src="https://img.icons8.com/color/48/calendar--v1.png" alt="Calendar">
+      <h3>Smart Calendar</h3>
+      <p>Integrated calendar keeps your tasks and events perfectly aligned in one place.</p>
+    </div>
+    <div class="feature-box">
+      <img src="https://img.icons8.com/fluency/48/artificial-intelligence.png" alt="AI">
+      <h3>AI Assistant</h3>
+      <p>Get personalized insights and productivity suggestions powered by AI.</p>
+    </div>
+    <div class="feature-box">
+      <img src="img/stay motivated.webp" alt="Motivation">
+      <h3>Stay Motivated</h3>
+      <p>Boost your focus with daily quotes and productivity boosts designed for you.</p>
+    </div>
+  </section>
+
+  <section class="section-showcase">
+    <img src="img/home.webp" alt="Calendar Illustration">
+    <div class="text">
+      <h2>Dive into your day</h2>
+      <p>Home shows you the information you need, when you need it, so you can start your day with a clear view—and less stress.</p>
+    </div>
+  </section>
+
+  <section class="calendar-section">
+    <h2>📅 Integrated Calendar</h2>
+    <iframe class="calendar" src="https://calendar.google.com/calendar/embed?src=en.indian%23holiday%40group.v.calendar.google.com&ctz=Asia%2FCalcutta" frameborder="0" scrolling="no"></iframe>
+  </section>
+<section class="section-showcase">
+    <img src="img/go paperless.webp" alt="Calendar Illustration">
+    <div class="text">
+      <h2>Go Paperless</h2>
+      <p>Declutter your life and workspace by moving your tasks into a digital format.</p>
+    </div>
+  </section>
+<section class="section-showcase">
+    <img src="img/right.png" alt="Calendar Illustration">
+    <div class="text">
+      <h2>Find the Right Plan</h2>
+      <p>Choose the best way to organize your workflow. Find the system that works for you.</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 TaskSpark. Designed with ✨ to empower your productivity.
+  </footer>
+</body>
+</html>

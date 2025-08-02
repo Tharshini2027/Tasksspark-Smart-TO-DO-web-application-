@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TaskSpark Login</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      min-height: 100vh;
+      background-color: #ffffff;
+    }
+
+    .left, .right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .left {
+      flex-direction: column;
+      background: #ffffff;
+    }
+
+    .left img.logo {
+      width: 40px;
+      margin-bottom: 1rem;
+    }
+
+    .left h1 {
+      font-size: 26px;
+      margin-bottom: 0.3rem;
+    }
+
+    .left h2 {
+      font-size: 20px;
+      margin-bottom: 1.2rem;
+      color: #555;
+    }
+
+    input[type="email"] {
+      padding: 12px;
+      width: 100%;
+      max-width: 320px;
+      margin-bottom: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      max-width: 320px;
+      padding: 12px;
+      font-size: 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .primary-btn {
+      background-color: #1a73e8;
+      color: white;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .primary-btn:hover {
+      background-color: #1558b0;
+    }
+
+    .signin-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 10px;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .signin-options a {
+      text-decoration: none;
+    }
+
+    .signin-options button {
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+      font-weight: 500;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px;
+    }
+
+    .signin-options img {
+      width: 20px;
+    }
+
+    .small-text {
+      font-size: 11px;
+      color: gray;
+      margin-top: 14px;
+      text-align: center;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .login-link {
+      font-size: 12px;
+      margin-top: 12px;
+    }
+
+    .right {
+      flex-direction: column;
+      background: #ffffff;
+      text-align: center;
+    }
+
+    .right img.art {
+      width: 80%;
+      max-width: 400px;
+      margin-bottom: 2rem;
+    }
+
+    .right h1 {
+      font-size: 22px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .footer-links {
+      font-size: 11px;
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      color: gray;
+    }
+
+    .footer-links a {
+      color: gray;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="left">
+    <img class="logo" src="img/OIP.jpg" alt="TaskSpark Logo" />
+    <h1>Welcome to TaskSpark!</h1>
+    <h2>Sign up and start organizing.</h2>
+    
+    <div class="signin-options">
+      <a href="email.html">
+        <button type="button">
+          <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Google Icon">Continue with Google
+        </button>
+      </a>
+      <button type="button">
+        <img src="https://cdn-icons-png.flaticon.com/512/731/731985.png" alt="Apple Icon">Continue with Apple
+      </button>
+    </div>
+
+    <div class="small-text">
+      By creating an account, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+    </div>
+    <div class="login-link">
+      Already have an account? <a href="#">Log in</a>
+    </div>
+  </div>
+
+  <div class="right">
+    <img class="art" src="img/splash.webp" alt="Illustration" />
+    <div class="footer-links">
+      <a href="#">Security</a>
+      <a href="#">Legal</a>
+      <a href="#">Privacy</a>
+    </div>
+  </div>
+</body>
+</html>

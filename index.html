@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🔥 TaskSpark – Smart To-Do App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Top Left Logo -->
+  <div class="logo-top-left"><h1>🔥 TaskSpark</h1></div>
+
+  <!-- Sidebar Toggle Button -->
+  <div id="sidebarToggle" onclick="toggleSidebar()">☰</div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <button onclick="window.location.href='history.html'">📖 History</button>
+    <button onclick="window.location.href='dashboard.html'">📘 Dashboard</button>
+    <button onclick="testNotification()">🔔 Notification</button>
+    <button onclick="toggleDarkMode()">🌓 Dark Mode</button>
+    <button onclick="window.location.href='techniques.html'">🧘techniques</button>
+
+    <div class="profile-box">
+      <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="profile-avatar" />
+      <div class="profile-info">
+       <span id="profileName">👤 Guest</span> 
+ 
+        <button class="logout-btn" onclick="logoutUser()">Logout</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Main Content -->
+  <div class="main">
+    <div class="user-greeting">Welcome, <strong id="mainProfileName">Guest</strong> 👋</div>
+
+    <div class="quote-bar" id="quote"></div>
+
+    <div class="card">
+      <h1>🔥 TaskSpark</h1>
+      <p class="subtitle">Your daily productivity partner.</p>
+      <input type="text" id="taskInput" placeholder="What's your goal today?" />
+      <input type="time" id="reminderTime" />
+    
+      <button class="add-task-btn" onclick="addTask()">Add Task</button>
+    
+    </div>
+
+    <ul id="taskList"></ul>
+    <div id="floating-bot" onclick="toggleBot()">🤖</div>
+  </div>
+<script>
+  const user = localStorage.getItem("loggedInUser");
+  const selected = localStorage.getItem("preferredTechnique");
+
+  // Update profile name in sidebar
+  if (user) {
+    document.getElementById("profileName").innerText = `👤 ${user}`;
+    document.getElementById("mainProfileName").innerText = user;
+  }
+
+  
+
+  // Optional logout function
+  function logoutUser() {
+    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("preferredTechnique");
+    window.location.href = "verify.html"; // or login page
+  }
+</script>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

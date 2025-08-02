@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📚 Productivity Techniques – TaskSpark</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+  <div class="max-w-5xl mx-auto p-6">
+    <h1 class="text-4xl font-bold mb-6 text-center text-blue-600">📚 Productivity Techniques</h1>
+    <p class="text-center mb-8 text-lg text-gray-600">Explore proven techniques to boost your focus, beat procrastination, and work smarter every day.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Pomodoro -->
+      <div class="bg-white shadow-md p-6 rounded-xl">
+        <h2 class="text-2xl font-semibold">🍅 Pomodoro Technique</h2>
+        <p class="mt-2 text-gray-600">Work for 25 minutes, then take a 5-minute break. After 4 cycles, take a longer break.</p>
+        <p class="mt-1 text-sm text-green-600 font-medium">Boosts deep focus and prevents burnout.</p>
+        <button onclick="selectTechnique('Pomodoro')" class="mt-3 bg-blue-500 hover:bg-blue-600 text-white py-1 px-4 rounded">
+  Try This
+</button>
+
+      </div>
+
+      <!-- Eisenhower Matrix -->
+      <div class="bg-white shadow-md p-6 rounded-xl">
+        <h2 class="text-2xl font-semibold">📊 Eisenhower Matrix</h2>
+        <p class="mt-2 text-gray-600">Categorize tasks as Urgent & Important, Important but not Urgent, etc. Prioritize wisely.</p>
+        <p class="mt-1 text-sm text-green-600 font-medium">Helps manage priorities and avoid time-wasting.</p>
+        <button onclick="selectTechnique('Eisenhower Matrix')" class="mt-3 bg-blue-500 hover:bg-blue-600 text-white py-1 px-4 rounded">
+  Try This
+</button>
+
+      </div>
+
+      <!-- Time Blocking -->
+      <div class="bg-white shadow-md p-6 rounded-xl">
+        <h2 class="text-2xl font-semibold">⏳ Time Blocking</h2>
+        <p class="mt-2 text-gray-600">Schedule your day into fixed time slots for tasks, breaks, and learning.</p>
+        <p class="mt-1 text-sm text-green-600 font-medium">Creates structure and minimizes multitasking.</p>
+        <button onclick="selectTechnique('Time Blocking')" class="mt-3 bg-blue-500 hover:bg-blue-600 text-white py-1 px-4 rounded">
+  Try This
+</button>
+
+      </div>
+
+      <!-- 2-Minute Rule -->
+      <div class="bg-white shadow-md p-6 rounded-xl">
+        <h2 class="text-2xl font-semibold">🚦 2-Minute Rule</h2>
+        <p class="mt-2 text-gray-600">If a task takes less than 2 minutes, do it immediately — no delays.</p>
+        <p class="mt-1 text-sm text-green-600 font-medium">Reduces mental clutter and quick task pileup.</p>
+        <button onclick="selectTechnique('2 Minutes Rule')" class="mt-3 bg-blue-500 hover:bg-blue-600 text-white py-1 px-4 rounded">
+  Try This
+</button>
+
+      </div>
+
+      <!-- Eat That Frog -->
+      <div class="bg-white shadow-md p-6 rounded-xl">
+        <h2 class="text-2xl font-semibold">💡 Eat That Frog</h2>
+        <p class="mt-2 text-gray-600">Start your day by doing the hardest, most important task first.</p>
+        <p class="mt-1 text-sm text-green-600 font-medium">Beats procrastination and builds momentum.</p>
+       <button onclick="selectTechnique('Eat that Frog')" class="mt-3 bg-blue-500 hover:bg-blue-600 text-white py-1 px-4 rounded">
+  Try This
+</button>
+
+      </div>
+
+      <!-- SMART Goals -->
+      <div class="bg-white shadow-md p-6 rounded-xl">
+        <h2 class="text-2xl font-semibold">📅 SMART Goals</h2>
+        <p class="mt-2 text-gray-600">Set goals that are Specific, Measurable, Achievable, Realistic, and Timely.</p>
+        <p class="mt-1 text-sm text-green-600 font-medium">Improves clarity and long-term motivation.</p>
+       <button onclick="selectTechnique('Smart Goals')" class="mt-3 bg-blue-500 hover:bg-blue-600 text-white py-1 px-4 rounded">
+  Try This
+</button>
+<script>
+  function selectTechnique(name) {
+    localStorage.setItem("preferredTechnique", name);
+    alert(`✅ ${name} Technique selected! Redirecting to Dashboard...`);
+    window.location.href = "index.html"; // redirects to home
+  }
+</script>
+
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

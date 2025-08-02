@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>📊 TaskSpark Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .dashboard {
+      max-width: 700px;
+      margin: 80px auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 20px;
+      color: #fff;
+      box-shadow: 0 0 10px #0003;
+    }
+    canvas {
+      background: #fff;
+      border-radius: 12px;
+      padding: 10px;
+    }
+    .back-btn {
+      background-color: #ffc107;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .back-btn:hover {
+      background-color: #e0a800;
+    }
+  </style>
+</head>
+<body style="background: linear-gradient(to right, #667eea, #764ba2); font-family: sans-serif;">
+
+  <div class="dashboard">
+    <h2>📈 Task Completion Summary</h2>
+    
+    <br>
+    <canvas id="taskChart" width="600" height="400"></canvas>
+
+    <a href="index.html"><button class="back-btn">← Back to Main App</button></a>
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  const history = JSON.parse(localStorage.getItem("history")) || [];
+
+  // Combine current tasks and history
+  const allTasks = [...tasks, ...history];
+
+  const taskData = {};
+
+  allTasks.forEach(task => {
+    const date = task.completedDate?.split("T")[0];
+    if (!date) return;
+
+    if (!taskData[date]) {
+      taskData[date] = { completed: 0, incomplete: 0 };
+    }
+
+    if (task.done) {
+      taskData[date].completed++;
+    } else {
+      taskData[date].incomplete++;
+    }
+  });
+
+  const labels = Object.keys(taskData).sort();
+  const completedCounts = labels.map(date => taskData[date].completed);
+  const incompleteCounts = labels.map(date => taskData[date].incomplete);
+
+  const ctx = document.getElementById('taskChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: '✅ Completed Tasks',
+          backgroundColor: '#2ecc71',
+          data: completedCounts,
+        },
+        {
+          label: '❌ Incomplete Tasks',
+          backgroundColor: '#e74c3c',
+          data: incompleteCounts,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Daily Task Completion vs Incompletion'
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
+  
+</body>
+</html>

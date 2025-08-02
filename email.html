@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TaskSpark – Email OTP Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white min-h-screen flex items-center justify-center font-sans">
+<header class="fixed top-0 left-0 w-full bg-white border-b border-gray-500shadow-sm z-50">
+    <div class="flex items-center space-x-3 px-7 py-7">
+      <img src="img/OIP.jpg" alt="TaskSpark Logo" class="w-11 h-11" />
+      <span class="text-4xl font-extrabold text-blue-700 tracking-wide">TaskSpark</span>
+    </div>
+  </header>
+
+
+
+  <!-- 🔲 Full screen container with image and form -->
+  <div class="flex flex-col md:flex-row items-center justify-center gap-10 max-w-6xl mx-auto px-4">
+
+    <!-- 🖼️ Left: Image (outside the box) -->
+    <div class="md:w-1/2 w-full flex justify-center">
+      <img src="img/integrations.webp" alt="Illustration" class="max-w-md w-full object-contain" />
+    </div>
+
+    <!-- 🧾 Right: Login Form inside card -->
+    <div class="w-full md:w-1/2">
+      <div class="bg-white shadow-xl rounded-xl p-8 w-full max-w-md mx-auto">
+        <h2 class="text-2xl font-bold text-gray-800 mb-2 text-center">🔐 Signin with OTP</h2>
+        <p class="text-sm text-gray-500 mb-6 text-center">Enter your email to receive an OTP</p>
+
+        <!-- Step 1: Email Form -->
+        <form id="emailForm" class="space-y-4">
+          <input type="email" id="emailInput" name="email" placeholder="Enter your email" required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
+          <button type="submit"
+            class="w-full bg-blue-600 text-white font-medium py-3 rounded-lg hover:bg-blue-700 transition">
+            Send OTP
+          </button>
+        </form>
+
+        <!-- Step 2: OTP Form -->
+        <form id="otpForm" method="POST" action="verify.php" class="space-y-4 hidden mt-6">
+          <input type="hidden" id="hiddenEmail" name="email">
+          <input type="text" name="otp" placeholder="Enter 6-digit OTP" maxlength="6" required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
+          <button type="submit"
+            class="w-full bg-green-600 text-white font-medium py-3 rounded-lg hover:bg-green-700 transition">
+            Verify OTP
+          </button>
+        </form>
+
+        <!-- Timer + Resend -->
+        <div id="timerText" class="text-sm text-gray-500 mt-4 hidden">Resend OTP in 60s</div>
+        <button id="resendBtn"
+          class="w-full border border-gray-300 text-blue-600 py-2 mt-3 rounded-lg hidden disabled:opacity-50 disabled:cursor-not-allowed">
+          Resend OTP
+        </button>
+
+        <!-- Status Messages -->
+        <div id="successMsg" class="text-green-600 text-sm mt-4 hidden">OTP Sent Successfully!</div>
+        <div id="errorMsg" class="text-red-600 text-sm mt-4 hidden">Failed to send OTP.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 🔧 OTP JS Logic -->
+  <script>
+    const emailForm = document.getElementById("emailForm");
+    const otpForm = document.getElementById("otpForm");
+    const timerText = document.getElementById("timerText");
+    const resendBtn = document.getElementById("resendBtn");
+    const hiddenEmail = document.getElementById("hiddenEmail");
+    const emailInput = document.getElementById("emailInput");
+    const successMsg = document.getElementById("successMsg");
+    const errorMsg = document.getElementById("errorMsg");
+
+    let timer;
+    let seconds = 60;
+
+    emailForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      if (!email) return;
+
+      fetch("send_otp.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `email=${encodeURIComponent(email)}`
+      })
+      .then(res => res.text())
+      .then(res => {
+        if (res.toLowerCase().includes("otp sent")) {
+          showStep2(email);
+        } else {
+          showError(res);
+        }
+      })
+      .catch(() => {
+        showError("Error sending OTP.");
+      });
+    });
+
+    function showStep2(email) {
+      successMsg.classList.remove("hidden");
+      errorMsg.classList.add("hidden");
+      otpForm.classList.remove("hidden");
+      timerText.classList.remove("hidden");
+      resendBtn.classList.remove("hidden");
+      resendBtn.disabled = true;
+      hiddenEmail.value = email;
+
+      seconds = 60;
+      timerText.textContent = `Resend OTP in ${seconds}s`;
+      timer = setInterval(() => {
+        seconds--;
+        timerText.textContent = `Resend OTP in ${seconds}s`;
+        if (seconds <= 0) {
+          clearInterval(timer);
+          timerText.textContent = "You can resend the OTP now.";
+          resendBtn.disabled = false;
+        }
+      }, 1000);
+    }
+
+    resendBtn.addEventListener("click", () => {
+      const email = hiddenEmail.value;
+      resendBtn.disabled = true;
+      successMsg.classList.add("hidden");
+      errorMsg.classList.add("hidden");
+
+      fetch("send_otp.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `email=${encodeURIComponent(email)}`
+      })
+      .then(res => res.text())
+      .then(res => {
+        if (res.toLowerCase().includes("otp sent")) {
+          successMsg.textContent = "OTP Resent!";
+          successMsg.classList.remove("hidden");
+          startTimer();
+        } else {
+          showError(res);
+        }
+      })
+      .catch(() => {
+        showError("Error resending OTP.");
+      });
+    });
+
+    function startTimer() {
+      seconds = 60;
+      timerText.textContent = `Resend OTP in ${seconds}s`;
+      timer = setInterval(() => {
+        seconds--;
+        timerText.textContent = `Resend OTP in ${seconds}s`;
+        if (seconds <= 0) {
+          clearInterval(timer);
+          timerText.textContent = "You can resend the OTP now.";
+          resendBtn.disabled = false;
+        }
+      }, 1000);
+    }
+
+    function showError(msg) {
+      errorMsg.textContent = msg;
+      errorMsg.classList.remove("hidden");
+      successMsg.classList.add("hidden");
+    }
+  </script>
+</body>
+</html>

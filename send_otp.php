@@ -13,19 +13,19 @@ $mail = new PHPMailer(true);
 try {
     // Server settings
     $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com'; // Gmail SMTP server
+    $mail->Host = ''; // Gmail SMTP server
     $mail->SMTPAuth = true;
     $mail->Username = ''; // Your Gmail
     $mail->Password = ''; // Your app password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port = 587;
+    $mail->Port = ;
 
     // Sender & recipient
     $mail->setFrom('', 'TaskSpark');
     $mail->addAddress($_POST['email']);
 
     // Message
-    $otp = rand(100000, 999999);
+    $otp = rand(, );
     session_start();
     $_SESSION['otp'] = $otp;
 

@@ -21,7 +21,7 @@ try {
     $mail->Port = 587;
 
     // Sender & recipient
-    $mail->setFrom('tharshiniccet@gmail.com', 'TaskSpark');
+    $mail->setFrom('', 'TaskSpark');
     $mail->addAddress($_POST['email']);
 
     // Message
